@@ -19,6 +19,7 @@
 | `frontend-workflow` | SOP | 设计先行前端开发 |
 | `ui-cases` | Tool | 组件设计方案生成 |
 | `design-freeze` | Tool | 冻结设计规范 |
+| `research-report` | Tool | 生成单文件 HTML 研究报告 |
 
 ## Hooks
 
