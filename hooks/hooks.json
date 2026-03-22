@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "output=$(echo '$TOOL_OUTPUT' | head -5); if echo \"$output\" | grep -qE 'FAIL|FAILED|error\\[|panicked'; then echo '[DevKit] ⚠️ 检测到测试失败或编译错误 — 建议用 /issue-fix 排查'; fi"
+          }
+        ]
+      }
+    ]
+  }
+}
