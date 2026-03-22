@@ -59,7 +59,25 @@ The quality gate (test-review) prevents the common trap of writing thin, happy-p
 └──────────────┬──────────────────────┘
                ▼
 ┌─────────────────────────────────────┐
-│ 6. Refactor — clean up, keep green  │
+│ 6. Code Review — /code-review       │
+│    All dimensions ≥ 7.0             │
+│    Final score ≥ 7.5                │
+│    No Critical issues               │
+└──────────┬──────────┬───────────────┘
+           │          │
+        PASS ✅    FAIL ❌
+           │          │
+           │          ▼
+           │    ┌─────────────────────┐
+           │    │ Fix issues from the │
+           │    │ review report,      │
+           │    │ re-review           │
+           │    └─────────┬───────────┘
+           │              │
+           │◄─────────────┘
+           ▼
+┌─────────────────────────────────────┐
+│ 7. Refactor — clean up, keep green  │
 └──────────────┬──────────────────────┘
                ▼
              Done ✅
@@ -164,9 +182,40 @@ All tests must pass. If any test fails:
 - Debug and fix the implementation (not the test)
 - If you discover a test was genuinely wrong (testing the wrong behavior), fix the test but document why
 
-### Step 6: Refactor
+### Step 6: Code Review
 
-With all tests green, clean up:
+Invoke the **code-review** skill to evaluate implementation quality.
+
+```
+/code-review [git-range]
+```
+
+Or if in an automated workflow, dispatch a code-review subagent:
+
+```
+Subagent prompt:
+"Review the code changes from [base_sha] to [head_sha] using the code-review skill.
+Feature description: [brief].
+Related plan: [path].
+Output the full scoring report."
+```
+
+**Gate criteria:**
+- Every dimension ≥ 7.0
+- Final score ≥ 7.5
+- No unresolved Critical issues
+
+**If FAIL:**
+1. Read the Issues section of the report
+2. Fix Critical and Important issues
+3. Re-run `/code-review`
+4. Repeat until PASS
+
+**Do NOT skip this step.** Test review ensures tests are good; code review ensures implementation is good. Both gates must pass.
+
+### Step 7: Refactor
+
+With all tests green and code review passed, clean up:
 
 - Remove duplication in implementation
 - Improve naming
