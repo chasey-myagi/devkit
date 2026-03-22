@@ -1,12 +1,11 @@
 ---
 name: issue-fix
 description: >
-  TDD-driven issue/bug fix workflow. Enforces writing a regression test BEFORE fixing the
-  bug, then reviewing both. Use when: (1) fixing bugs found in code review, (2) user says
-  /issue-fix, (3) fixing reported issues/bugs, (4) addressing code review findings.
-  Ensures every fix has a test proving the bug existed and is now resolved. Triggers on:
-  "fix this bug", "fix the issue", "address review findings", "fix code review issues", or
-  any bug/issue fix context.
+  TDD-driven issue/bug fix workflow. Enforces writing a regression test BEFORE fixing the bug,
+  then reviewing both. Use when: (1) fixing bugs found in code review, (2) user says /issue-fix,
+  (3) fixing reported issues/bugs, (4) addressing code review findings. Ensures every fix has
+  a test proving the bug existed and is now resolved. Triggers on: "fix this bug", "fix the issue",
+  "address review findings", "fix code review issues", or any bug/issue fix context.
 ---
 
 # Issue Fix

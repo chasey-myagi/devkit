@@ -52,7 +52,7 @@ Agent(
 )
 ```
 
-Read `.claude/skills/ui-cases/case-generator.md` for the full agent prompt. Construct the dispatch prompt as:
+Read `.codex/skills/ui-cases/case-generator.md` for the full agent prompt. Construct the dispatch prompt as:
 
 ```
 你是一个 UI 方案探索专家。请按照以下规范生成设计方案：

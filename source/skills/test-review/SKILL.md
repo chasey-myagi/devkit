@@ -2,12 +2,11 @@
 name: test-review
 description: >
   Review test cases for quality, coverage, and rigor via an independent reviewer agent.
-  Use when: (1) tests have been written and need quality validation, (2) user says
-  /test-review, (3) in TDD workflows before implementation, (4) after a teammate writes
-  tests and you need to verify quality. Acts as a quality gate — implementation should NOT
-  proceed until review passes. Triggers on: "review tests", "check test quality", "are
-  these tests good enough", "test coverage", or any context where test adequacy is in
-  question.
+  Use when: (1) tests have been written and need quality validation, (2) user says /test-review,
+  (3) in TDD workflows before implementation, (4) after a teammate writes tests and you need to
+  verify quality. Acts as a quality gate — implementation should NOT proceed until review passes.
+  Triggers on: "review tests", "check test quality", "are these tests good enough", "test coverage",
+  or any context where test adequacy is in question.
 ---
 
 # Test Case Review
@@ -62,7 +61,7 @@ Agent(
 
 ### Reviewer Prompt Template
 
-Read `.claude/skills/test-review/test-reviewer.md` for the full reviewer system prompt. Construct the dispatch prompt as:
+Read `{{skills_path}}/test-review/test-reviewer.md` for the full reviewer system prompt. Construct the dispatch prompt as:
 
 ```
 你是一个测试用例审核专家。请严格按照以下审核规范工作：

@@ -1,13 +1,13 @@
 ---
 name: tdd-workflow
 description: >
-  Test-Driven Development workflow that enforces writing tests BEFORE implementation. Use
-  when: (1) starting any feature implementation, (2) user says /tdd or "use TDD", (3)
-  implementing a planned task from a spec or plan document, (4) any coding task where
-  quality matters. This SOP ensures tests are written first, reviewed for quality via
-  test-review, and only then does implementation begin. Even simple features benefit from
-  this discipline. Triggers on: "implement", "build", "develop", "code this", "start
-  coding", "write the feature", or any context where code is about to be written.
+  Test-Driven Development workflow that enforces writing tests BEFORE implementation.
+  Use when: (1) starting any feature implementation, (2) user says /tdd or "use TDD",
+  (3) implementing a planned task from a spec or plan document, (4) any coding task where
+  quality matters. This SOP ensures tests are written first, reviewed for quality via test-review,
+  and only then does implementation begin. Even simple features benefit from this discipline.
+  Triggers on: "implement", "build", "develop", "code this", "start coding", "write the feature",
+  or any context where code is about to be written.
 ---
 
 # TDD Workflow

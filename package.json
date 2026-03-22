@@ -1,14 +1,20 @@
 {
   "name": "devkit",
-  "version": "0.1.0",
-  "description": "Development quality assurance skills for Claude Code",
+  "version": "0.2.0",
+  "type": "module",
+  "description": "Development quality assurance skills for AI coding assistants",
   "keywords": [
-    "claude",
+    "claude-code",
+    "codex",
     "tdd",
     "testing",
     "code-review",
-    "quality"
+    "quality",
+    "skills"
   ],
+  "scripts": {
+    "build": "node scripts/build.js"
+  },
   "author": "Chasey",
   "license": "MIT"
 }

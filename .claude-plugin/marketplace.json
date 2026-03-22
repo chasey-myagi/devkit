@@ -2,7 +2,7 @@
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "devkit",
   "metadata": {
-    "description": "Development quality assurance skills for Claude Code"
+    "description": "Development quality assurance skills for AI coding assistants"
   },
   "owner": {
     "name": "Chasey"
@@ -10,8 +10,8 @@
   "plugins": [
     {
       "name": "devkit",
-      "description": "Development quality assurance skills for Claude Code",
-      "version": "0.1.0",
+      "description": "Development quality assurance skills — TDD workflow, test review, code review, and design-first frontend development",
+      "version": "0.2.0",
       "author": {
         "name": "Chasey"
       },
@@ -22,7 +22,9 @@
         "testing",
         "code-review",
         "quality",
-        "workflow"
+        "workflow",
+        "frontend",
+        "design"
       ]
     }
   ]

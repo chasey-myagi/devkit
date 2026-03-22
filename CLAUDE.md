@@ -2,6 +2,15 @@
 
 开发质量保障 skill 包。包含多个开发阶段的 SOP（标准操作流程）。
 
+## Architecture
+
+- `source/skills/` — 唯一的源文件，所有编辑在这里
+- `scripts/build.js` — 构建脚本，转换到各平台输出
+- `.claude/skills/` — Claude Code 构建输出（不要直接编辑）
+- `.codex/skills/` — Codex CLI 构建输出（不要直接编辑）
+
+修改 skill 后运行 `node scripts/build.js` 重新构建。
+
 ## Skills
 
 ### 通用

@@ -1,13 +1,12 @@
 ---
 name: code-review
 description: >
-  Review implementation code for quality, correctness, and production readiness via an
-  independent reviewer agent. Use when: (1) implementation code has been written and needs
-  quality validation, (2) user says /code-review, (3) after TDD implementation phase (Wave
-  B), (4) before merge to main, (5) after a teammate implements features. Acts as a
-  quality gate — catches bugs, architecture issues, and security problems before they
-  compound. Triggers on: "review code", "check implementation", "is this code ready",
-  "code quality", or any context where implementation quality is in question.
+  Review implementation code for quality, correctness, and production readiness via an independent
+  reviewer agent. Use when: (1) implementation code has been written and needs quality validation,
+  (2) user says /code-review, (3) after TDD implementation phase (Wave B), (4) before merge to main,
+  (5) after a teammate implements features. Acts as a quality gate — catches bugs, architecture issues,
+  and security problems before they compound. Triggers on: "review code", "check implementation",
+  "is this code ready", "code quality", or any context where implementation quality is in question.
 ---
 
 # Code Review
@@ -62,7 +61,7 @@ Agent(
 
 ### Reviewer Prompt Template
 
-Read `.claude/skills/code-review/code-reviewer.md` for the full reviewer system prompt. Construct the dispatch prompt as:
+Read `{{skills_path}}/code-review/code-reviewer.md` for the full reviewer system prompt. Construct the dispatch prompt as:
 
 ```
 你是一个代码审核专家。请严格按照以下审核规范工作：

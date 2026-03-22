@@ -1,12 +1,12 @@
 ---
 name: design-freeze
 description: >
-  Consolidate all confirmed UI/UX decisions into a frozen design spec document. Use when:
-  (1) all ui-cases selections are complete, (2) user says /design-freeze, (3) ready to
-  transition from design to implementation phase, (4) need to formalize design decisions
-  before coding. Dispatches an auditor agent to verify completeness and consistency.
-  Triggers on: "freeze the design", "finalize design", "lock the spec", "ready to
-  implement", or when all component cases have been selected.
+  Consolidate all confirmed UI/UX decisions into a frozen design spec document.
+  Use when: (1) all ui-cases selections are complete, (2) user says /design-freeze,
+  (3) ready to transition from design to implementation phase, (4) need to formalize
+  design decisions before coding. Dispatches an auditor agent to verify completeness
+  and consistency. Triggers on: "freeze the design", "finalize design", "lock the spec",
+  "ready to implement", or when all component cases have been selected.
 ---
 
 # Design Freeze
@@ -37,7 +37,7 @@ Scan the project for all design artifacts:
 
 Spawn a **spec-auditor agent** to check completeness and consistency.
 
-Read `.claude/skills/design-freeze/spec-auditor.md` for the agent prompt.
+Read `{{skills_path}}/design-freeze/spec-auditor.md` for the agent prompt.
 
 The auditor verifies:
 - 所有需要 cases 的组件是否都有选择记录

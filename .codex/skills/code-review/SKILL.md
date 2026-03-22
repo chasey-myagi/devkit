@@ -62,7 +62,7 @@ Agent(
 
 ### Reviewer Prompt Template
 
-Read `.claude/skills/code-review/code-reviewer.md` for the full reviewer system prompt. Construct the dispatch prompt as:
+Read `.codex/skills/code-review/code-reviewer.md` for the full reviewer system prompt. Construct the dispatch prompt as:
 
 ```
 你是一个代码审核专家。请严格按照以下审核规范工作：

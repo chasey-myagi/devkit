@@ -37,7 +37,7 @@ Scan the project for all design artifacts:
 
 Spawn a **spec-auditor agent** to check completeness and consistency.
 
-Read `.claude/skills/design-freeze/spec-auditor.md` for the agent prompt.
+Read `.codex/skills/design-freeze/spec-auditor.md` for the agent prompt.
 
 The auditor verifies:
 - 所有需要 cases 的组件是否都有选择记录

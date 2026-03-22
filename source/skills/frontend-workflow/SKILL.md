@@ -2,10 +2,10 @@
 name: frontend-workflow
 description: >
   Design-first frontend development workflow. Enforces establishing UI/UX direction,
-  generating component design cases for user selection, and freezing design specs before
-  any production code is written. Use when: (1) starting any frontend feature, (2) user
-  says /frontend-workflow or "build the UI", (3) implementing pages/components/views. All
-  design and code work uses impeccable skill for quality. Triggers on: "build frontend",
+  generating component design cases for user selection, and freezing design specs
+  before any production code is written. Use when: (1) starting any frontend feature,
+  (2) user says /frontend-workflow or "build the UI", (3) implementing pages/components/views.
+  All design and code work uses impeccable skill for quality. Triggers on: "build frontend",
   "create the UI", "design the page", "implement the view", "write the component".
 ---
 

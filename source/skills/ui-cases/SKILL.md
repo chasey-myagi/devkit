@@ -1,12 +1,11 @@
 ---
 name: ui-cases
 description: >
-  Generate interactive HTML case files with 5+ design variants for a UI component or page
-  style. Use when: (1) need to show users multiple design options, (2) user says
-  /ui-cases, (3) in frontend-workflow before implementation, (4) exploring visual
-  directions. Dispatches a design explorer agent that generates side-by-side comparison
-  pages. Triggers on: "show me options", "design cases", "component variants", "which
-  style".
+  Generate interactive HTML case files with 5+ design variants for a UI component or page style.
+  Use when: (1) need to show users multiple design options, (2) user says /ui-cases,
+  (3) in frontend-workflow before implementation, (4) exploring visual directions.
+  Dispatches a design explorer agent that generates side-by-side comparison pages.
+  Triggers on: "show me options", "design cases", "component variants", "which style".
 ---
 
 # UI Cases
@@ -52,7 +51,7 @@ Agent(
 )
 ```
 
-Read `.claude/skills/ui-cases/case-generator.md` for the full agent prompt. Construct the dispatch prompt as:
+Read `{{skills_path}}/ui-cases/case-generator.md` for the full agent prompt. Construct the dispatch prompt as:
 
 ```
 你是一个 UI 方案探索专家。请按照以下规范生成设计方案：
