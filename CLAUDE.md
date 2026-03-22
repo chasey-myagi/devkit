@@ -4,27 +4,43 @@
 
 ## Skills
 
+### 后端/全栈
+
 | Skill | 类型 | 说明 |
 |-------|------|------|
-| `tdd-workflow` | SOP | 测试驱动开发完整流程：分析 → 写测试 → 质量门禁 → 实现 → 代码审核 → 验证 |
+| `tdd-workflow` | SOP | 测试驱动开发：分析 → 写测试 → test-review → 实现 → code-review → 验证 |
 | `test-review` | Tool | 测试用例质量审核，6 维度打分 + 缺失场景清单 |
 | `code-review` | Tool | 实现代码质量审核，6 维度打分 + Issues 分级清单 |
+
+### 前端
+
+| Skill | 类型 | 说明 |
+|-------|------|------|
+| `frontend-workflow` | SOP | 设计先行前端开发：设计上下文 → UI/UX cases → 组件 cases → 设计冻结 → 实现 |
+| `ui-cases` | Tool | 为组件/页面生成 5+ 种设计方案 HTML，用户在浏览器中对比选择 |
+| `design-freeze` | Tool | 汇总所有设计选择 → 完整性/一致性审核 → 冻结设计规范 |
 
 ## 使用
 
 ```
-/tdd-workflow          # 启动完整 TDD 流程
-/test-review           # 单独审核测试质量
-/test-review path/to/tests  # 审核指定测试文件
-/code-review           # 单独审核代码质量
-/code-review HEAD~3..HEAD  # 审核指定 git 范围
+# 后端
+/tdd-workflow              # TDD 完整流程
+/test-review               # 审核测试质量
+/code-review               # 审核代码质量
+
+# 前端
+/frontend-workflow         # 设计先行前端开发流程
+/ui-cases button           # 为按钮生成设计方案
+/design-freeze             # 冻结设计规范
 ```
 
-## 与 superpowers 的关系
+## 与其他 plugin 的关系
 
-superpowers 管"怎么做"（brainstorm → plan → implement → review），devkit 管"做得好不好"（测试质量 → 代码质量）。两者互补。
+- **superpowers**：管"怎么做"（brainstorm → plan → implement）
+- **devkit**：管"做得好不好"（测试质量 → 代码质量 → 设计质量）
+- **impeccable**：管"做得好看"（前端设计品质），devkit 的 frontend-workflow 强制使用 impeccable
 
 推荐流程：
 ```
-superpowers:brainstorming → superpowers:writing-plans → devkit:tdd-workflow → superpowers:verification-before-completion
+superpowers:brainstorming → superpowers:writing-plans → devkit:tdd-workflow / devkit:frontend-workflow
 ```
