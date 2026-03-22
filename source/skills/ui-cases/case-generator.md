@@ -32,49 +32,68 @@
 - **拖拽可排序**：支持拖拽交互
 - **手势友好**：大触控区域，滑动操作
 
+## 风格体系模式
+
+如果指定了风格体系（如 DaisyUI、Minimal），所有 5+ 方案都在该风格体系内探索变体。
+如果未指定风格，自由从方向库中选择 5+ 种差异大的方向。
+
+## 必须包含日间/夜间模式
+
+**每个方案必须同时展示日间和夜间两种模式。** 页面右上角必须有一个全局的 Dark/Light 切换按钮，点击后所有方案同时切换。
+
+实现方式：
+- `<html>` 上加 `data-theme="dark"` 属性
+- 所有配色通过 CSS 变量控制
+- 切换按钮改变 `data-theme` 值，CSS 变量跟随切换
+
 ## 输出格式
 
-生成一个单文件 HTML，内含所有方案的并排对比：
+生成一个单文件 HTML，内含所有方案：
 
 ```html
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{Component Name} — Design Cases</title>
+  <title>{Component Name} [{Style}] — Design Cases</title>
   <style>
-    /* 页面框架样式：深色背景，清晰分隔 */
+    /* 主题变量 */
+    [data-theme="dark"] { --bg: ...; --card: ...; --text: ...; }
+    [data-theme="light"] { --bg: ...; --card: ...; --text: ...; }
     /* 每个方案的样式用 scoped class 隔离 */
   </style>
 </head>
 <body>
+  <!-- 右上角主题切换 -->
+  <button id="theme-toggle" onclick="toggleTheme()">🌙</button>
+
   <header>
     <h1>{Component Name} — 设计方案对比</h1>
-    <p>共 N 种方案，请在浏览器中查看并选择偏好的方向</p>
+    <p>{Style 名称（如果有）} · 共 N 种方案</p>
   </header>
 
   <section class="case" id="case-1">
     <div class="case-header">
-      <h2>方案 1：{方案名称}</h2>
-      <p class="case-desc">{一句话描述风格特点和适用场景}</p>
-      <div class="case-tags">
-        <span>极简</span>
-        <span>线性</span>
-        <span>克制动画</span>
-      </div>
+      <h2>方案 A：{方案名称}</h2>
+      <p class="case-desc">{一句话描述}</p>
+      <div class="case-tags"><span>标签1</span><span>标签2</span></div>
     </div>
     <div class="case-demo">
-      <!-- 实际可交互的组件实现 -->
-      <!-- 展示所有状态：默认、hover、focus、active、disabled -->
+      <!-- 可交互组件，展示所有状态 -->
     </div>
   </section>
 
   <!-- 重复 5-8 个方案 -->
 
-  <footer>
-    <p>告诉我你偏好哪个方案。可以混搭，比如"方案 3 的布局 + 方案 1 的配色"。</p>
-  </footer>
+  <script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    document.getElementById('theme-toggle').textContent = next === 'light' ? '🌙' : '☀️';
+  }
+  </script>
 </body>
 </html>
 ```

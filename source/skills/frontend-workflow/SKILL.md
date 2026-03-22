@@ -27,6 +27,52 @@ description: >
 | **Implementor** | `impeccable:frontend-design` | 按冻结 spec 写正式代码 |
 | **Code Reviewer** | `code-review` | 审核实现代码质量 |
 
+## Core Concepts
+
+### 风格体系（Style System）
+
+一次前端设计可以有**一个或多个风格体系**，每个体系下的所有组件共享同一设计语言。
+
+```
+单风格（默认）：
+  所有组件只出一套 cases（5+ variant）
+
+多风格（用户要求时）：
+  每个组件出 N 套 cases，每套对应一个风格体系
+  例如：Original（科技极客）、DaisyUI（圆润友好）、Minimal（极简）
+```
+
+用户可能：
+- 一开始就指定要多套风格对比
+- 看了第一套后要求"再来一套 XX 风格的"
+- 从不同风格体系中混搭组件
+
+### Cases 文件层级
+
+```
+{cases-dir}/
+├── index.html                              # 对比工具（自动生成/更新）
+├── {component}-cases.html                  # 单风格时
+├── {component}-{style}-cases.html          # 多风格时
+│   例如：
+│   ├── app-header-cases.html               # 仅一套风格
+│   ├── program-card-original-cases.html    # 风格 A
+│   └── program-card-daisy-cases.html       # 风格 B
+```
+
+### 对比工具 index.html
+
+当有 2+ 个 cases 文件时，**必须生成/更新 index.html**。
+
+交互设计：
+- **全屏对比模式** — 左右分屏，iframe 撑满，最大化展示面积
+- **顶部极窄工具栏** — 组件 tab + 风格标签，不浪费空间
+- **键盘快捷键** — 数字键切组件、方向键切上/下个、F/G 全屏左/右、Esc 恢复
+- **单风格时** — 只显示一个全屏 iframe，无分屏
+- **多风格时** — 默认双栏对比，toolbar 显示左右风格标签
+
+必须使用 `ui-cases/index-template.md` 中定义的模板生成。
+
 ## The Flow
 
 ```
@@ -37,45 +83,44 @@ description: >
 └──────────────┬───────────────────────────┘
                ▼
 ┌──────────────────────────────────────────┐
-│ 2. App-Level UI Direction                │
-│    /ui-cases 生成整体风格 cases          │
-│    输出: app-style-cases.html            │
-│    用户选择 → 确定配色/字体/氛围         │
+│ 2. Component List                        │
+│    列出所有需要设计的组件                │
+│    确定风格体系数量（1 套 or N 套）      │
+│    写入 frontend-design.md              │
 └──────────────┬───────────────────────────┘
                ▼
 ┌──────────────────────────────────────────┐
-│ 3. UX Flow Design                        │
-│    /ui-cases 生成交互流程 cases          │
-│    输出: ux-flow-cases.html              │
-│    用户选择 → 确定导航/布局/状态处理     │
+│ 3. Generate Cases                        │
+│    /ui-cases 批量或逐个生成             │
+│    每生成一批 → 更新 index.html         │
+│    用户可随时追加风格体系               │
 └──────────────┬───────────────────────────┘
                ▼
 ┌──────────────────────────────────────────┐
-│ 4. Component Cases (逐个)                │
-│    /ui-cases {component} × N 个组件      │
-│    每个输出: {component}-cases.html       │
-│    用户逐一选择偏好方案                  │
+│ 4. User Selection                        │
+│    用户通过 index.html 对比选择         │
+│    每个组件选定方案（可跨风格混搭）     │
+│    记录到 design-spec.md               │
 └──────────────┬───────────────────────────┘
                ▼
 ┌──────────────────────────────────────────┐
 │ 5. Design Freeze                         │
-│    /design-freeze                        │
-│    Spec Auditor 检查完整性/一致性        │
-│    输出: design-spec.md（用户确认冻结）  │
+│    /design-freeze 审核完整性/一致性      │
+│    输出 design-spec.md（用户确认冻结）   │
 └──────────────┬───────────────────────────┘
                ▼
 ┌──────────────────────────────────────────┐
 │ 6. Implementation                        │
-│    按 design-spec.md 写代码              │
+│    按 design-spec.md 写代码             │
 │    必须使用 impeccable:frontend-design   │
-│    不得偏离冻结的 spec                   │
+│    不得偏离冻结的 spec                  │
 └──────────────┬───────────────────────────┘
                ▼
 ┌──────────────────────────────────────────┐
 │ 7. Code Review + Visual Review           │
-│    /code-review 审代码质量               │
-│    截图对比 cases 中选定的方案           │
-│    用户确认视觉一致性                    │
+│    /code-review 审代码质量              │
+│    截图对比 cases 中选定的方案          │
+│    用户确认视觉一致性                   │
 └──────────────┬───────────────────────────┘
                ▼
              Done ✅
@@ -93,44 +138,42 @@ description: >
 
 **绝不跳过**。没有设计上下文直接写代码 = 盲写。
 
-### Step 2: App-Level UI Direction
+### Step 2: Component List
 
-确定整个应用的视觉基调。
+在开始生成 cases 之前，先与用户对齐：
 
-调用 `/ui-cases` 技能，目标是"应用整体风格"：
-- 配色方案、字体组合、间距系统、圆角/阴影风格
-- 输出 `app-style-cases.html`（5+ 种整体风格方向）
-- 用户在浏览器中查看并选择
+1. 列出所有需要设计的组件（写入 `frontend-design.md`）
+2. 每个组件注明：名称、职责、所在页面、包含的状态
+3. 确定风格体系：
+   - 默认 1 套，用户要求时可追加
+   - 例如："先出一套科技风，再出一套 DaisyUI 风"
+4. 确定 cases 文件输出目录
 
-用户确认后记录选择，继续。
+### Step 3: Generate Cases
 
-### Step 3: UX Flow Design
+调用 `/ui-cases` 生成各组件的 cases：
 
-确定交互模式和用户流转。
+- **可以并行**：多个组件的 cases 同时生成（dispatch 多个 agent）
+- **多风格体系**：同一组件出多份 cases（每份标注风格名）
+- **每次生成后**：更新 `index.html` 对比工具
 
-调用 `/ui-cases` 技能，目标是"交互流程与布局"：
-- 页面结构、导航模式、关键交互流、状态处理
-- 输出 `ux-flow-cases.html`
-- 用户选择
+**每个 cases.html 必须包含**：
+- 5+ 种差异大的方案
+- 日间/夜间两种模式预览
+- 所有交互状态（hover、focus、active、disabled、loading）
+- 方案名称 + 一句话描述 + 风格标签
 
-### Step 4: Component Cases
+**index.html 更新规则**：
+- 第一个 cases 文件生成后就创建 index.html
+- 后续每个新 cases 文件都追加到 index.html 的 tab 列表中
+- 多风格时自动开启分屏对比模式
 
-对每个 UI 组件，调用 `/ui-cases {component-name}`。
+### Step 4: User Selection
 
-**组件优先级：**
-1. 导航（影响全局）
-2. 按钮 + 表单控件（高频交互）
-3. 数据展示（卡片、表格、列表）
-4. 反馈（Toast、Modal、Loading）
-5. 装饰性元素
-
-每个组件：
-1. 调用 `/ui-cases` → 生成 `{component}-cases.html`
-2. 用户打开浏览器查看
-3. 用户告知选择
-4. 记录选择，继续下一个组件
-
-**一次只做一个组件**，不要批量出全部 cases。用户逐一 review 避免信息过载。
+1. 告知用户打开 `index.html`（给完整路径）
+2. 用户通过对比工具浏览所有方案
+3. 用户告知每个组件的选择（可以混搭风格）
+4. 记录到 `design-spec.md`
 
 ### Step 5: Design Freeze
 
@@ -170,6 +213,7 @@ description: >
 | Cases 只做 2 种 | 至少 5 种，方向差异要大 |
 | 不用 impeccable | 所有前端代码（cases + 正式代码）都用 impeccable |
 | 实现时偷偷改设计 | 严格按冻结 spec，有问题先沟通 |
-| 一次出全部组件 cases | 一个组件一轮 review，避免信息过载 |
 | 没有 .impeccable.md 就开始 | 先跑 teach-impeccable |
 | 跳过 design-freeze | 不冻结 = 没标准 = 实现时随意发挥 |
+| 多风格时不提供对比工具 | 有 2+ cases 文件就必须有 index.html |
+| index.html 占太多空间 | 工具栏极窄，把空间全给 cases iframe |
