@@ -4,11 +4,12 @@
 
 ## Skills
 
-### 后端/全栈
+### 通用
 
 | Skill | 类型 | 说明 |
 |-------|------|------|
 | `tdd-workflow` | SOP | 测试驱动开发：分析 → 写测试 → test-review → 实现 → code-review → 验证 |
+| `issue-fix` | SOP | TDD 驱动的 bug 修复：写回归测试(FAIL) → 修复(PASS) → code-review |
 | `test-review` | Tool | 测试用例质量审核，6 维度打分 + 缺失场景清单 |
 | `code-review` | Tool | 实现代码质量审核，6 维度打分 + Issues 分级清单 |
 
@@ -23,8 +24,9 @@
 ## 使用
 
 ```
-# 后端
+# 开发
 /tdd-workflow              # TDD 完整流程
+/issue-fix                 # TDD 驱动的 bug 修复
 /test-review               # 审核测试质量
 /code-review               # 审核代码质量
 
