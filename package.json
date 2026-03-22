@@ -1,0 +1,14 @@
+{
+  "name": "devkit",
+  "version": "0.1.0",
+  "description": "Development quality assurance skills for Claude Code — TDD workflow, test review, code review",
+  "keywords": [
+    "claude",
+    "tdd",
+    "testing",
+    "code-review",
+    "quality"
+  ],
+  "author": "Chasey",
+  "license": "MIT"
+}
