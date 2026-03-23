@@ -5,5 +5,5 @@
   "description": "Development quality assurance skills for AI coding assistants",
   "keywords": ["claude-code", "tdd", "testing", "code-review", "quality", "skills"],
   "author": "Chasey",
-  "license": "MIT"
+  "license": "BUSL-1.1"
 }
