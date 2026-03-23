@@ -1,10 +1,10 @@
-# 🛡️ DevKit
+# DevKit
 
-**Development quality assurance skills for AI coding assistants.**
+Development quality assurance skills for Claude Code.
 
-7 skills, 2 platforms. TDD workflow, test review, code review, and design-first frontend development — shipped as plug-and-play skills for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and [Codex CLI](https://github.com/openai/codex).
+7 skills. TDD workflow, test review, code review, and design-first frontend development.
 
-## 📦 Skills
+## Skills
 
 ### General
 
@@ -23,19 +23,19 @@
 | `/ui-cases` | Tool | Generate 5+ interactive design variants as HTML — user picks in browser |
 | `/design-freeze` | Tool | Consolidate design selections → completeness audit → freeze design spec |
 
-## 🚀 Quick Start
+## Hooks
 
-**Claude Code:**
+| Event | Trigger | Effect |
+|-------|---------|--------|
+| PostToolUse:Bash | Test failure or compile error detected | Suggest `/issue-fix` for investigation |
+
+## Install
 
 ```bash
 claude install chasey-myagi/devkit
 ```
 
-**Codex CLI:**
-
-Clone or copy `.codex/skills/` into your project.
-
-**Then use:**
+## Usage
 
 ```
 /tdd-workflow                    # Start the full TDD flow
@@ -49,23 +49,23 @@ Clone or copy `.codex/skills/` into your project.
 /design-freeze                   # Freeze design spec
 ```
 
-## ⚡ How it works
+## How it works
 
 DevKit enforces **quality gates** at every stage:
 
 ```
-Write tests → /test-review (≥ 8.0?) → Implement → /code-review (≥ 7.5?)
-                  ❌ Fix gaps                          ❌ Fix issues
+Write tests → /test-review (>= 8.0?) → Implement → /code-review (>= 7.5?)
+                  ✗ Fix gaps                          ✗ Fix issues
 ```
 
-- **Test review**: 6 dimensions — quantity, scenario coverage, boundary exploration, error paths, state combinations, test quality. Gate: every dimension ≥ 7.5, final ≥ 8.0.
-- **Code review**: 6 dimensions — correctness, security, architecture, error handling, maintainability, requirements fit. Gate: every dimension ≥ 7.0, final ≥ 7.5, no Critical issues.
+- **Test review**: 6 dimensions — quantity, scenario coverage, boundary exploration, error paths, state combinations, test quality. Gate: every dimension >= 7.5, final >= 8.0.
+- **Code review**: 6 dimensions — correctness, security, architecture, error handling, maintainability, requirements fit. Gate: every dimension >= 7.0, final >= 7.5, no Critical issues.
 - **All reviewers are independent agents** — fresh context each time, zero bias from implementation history.
 
-## 🏗️ Architecture
+## Architecture
 
 ```
-source/skills/          ← Single source of truth
+skills/                 ← Skill source files (plugin reads directly)
     ├── tdd-workflow/
     ├── test-review/
     ├── code-review/
@@ -74,40 +74,14 @@ source/skills/          ← Single source of truth
     ├── ui-cases/
     └── design-freeze/
 
-        ↓  node scripts/build.js
-
-.claude/skills/         ← Claude Code output
-.codex/skills/          ← Codex CLI output
+hooks/
+    └── hooks.json      ← Automation hooks
 ```
 
-Source files use `{{placeholders}}` replaced per-platform at build time:
+## Version
 
-| Placeholder | Claude Code | Codex |
-|-------------|-------------|-------|
-| `{{model}}` | Claude | GPT |
-| `{{config_file}}` | CLAUDE.md | AGENTS.md |
-| `{{skills_path}}` | .claude/skills | .codex/skills |
+v0.3.0
 
-Never edit `.claude/skills/` or `.codex/skills/` directly — they are build outputs. Edit `source/skills/` and rebuild.
+## License
 
-## 🧩 How it fits
-
-- [**superpowers**](https://github.com/anthropics/superpowers) — manages *how to do it* (brainstorm → plan → implement)
-- **devkit** — manages *how good is it* (test quality → code quality → design quality)
-- [**impeccable**](https://github.com/pbakaus/impeccable) — manages *how good it looks* (frontend design quality)
-
-Recommended flow:
-
-```
-superpowers:brainstorming → superpowers:writing-plans → devkit:tdd-workflow → superpowers:verification
-```
-
-## 🛠️ Development
-
-```bash
-node scripts/build.js    # Build for all platforms
-```
-
-## 📄 License
-
-MIT
+[BUSL-1.1](LICENSE)
