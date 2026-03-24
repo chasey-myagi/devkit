@@ -1,6 +1,6 @@
 {
   "name": "devkit",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "type": "module",
   "description": "Development quality assurance skills for AI coding assistants",
   "keywords": ["claude-code", "tdd", "testing", "code-review", "quality", "skills"],
