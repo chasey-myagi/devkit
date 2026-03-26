@@ -2,9 +2,15 @@
 
 Development quality assurance skills for Claude Code.
 
-7 skills. TDD workflow, test review, code review, and design-first frontend development.
+8 skills. Multi-agent harness workflow, TDD, test review, code review, and design-first frontend development.
 
 ## Skills
+
+### Harness
+
+| Skill | Type | What it does |
+|-------|------|-------------|
+| `/harness-workflow` | SOP | GAN-inspired multi-agent harness: Planner → Generator → Evaluator with iterative feedback loops via AgentTeam. Supports backend, frontend, and fullstack tasks. |
 
 ### General
 
@@ -38,6 +44,7 @@ claude install chasey-myagi/devkit
 ## Usage
 
 ```
+/harness-workflow                # Multi-agent harness (Planner→Generator→Evaluator)
 /tdd-workflow                    # Start the full TDD flow
 /issue-fix                       # TDD-driven bug fix
 /test-review                     # Review test quality
@@ -66,6 +73,15 @@ Write tests → /test-review (>= 8.0?) → Implement → /code-review (>= 7.5?)
 
 ```
 skills/                 ← Skill source files (plugin reads directly)
+    ├── harness-workflow/
+    │   ├── SKILL.md            ← Orchestration SOP
+    │   ├── planner.md          ← Planner teammate prompt
+    │   ├── backend/
+    │   │   ├── generator.md    ← Backend generator prompt
+    │   │   └── evaluator.md    ← Backend evaluator prompt (test + code review)
+    │   └── frontend/
+    │       ├── generator.md    ← Frontend generator prompt
+    │       └── evaluator.md    ← Frontend evaluator prompt (4-dimension browser testing)
     ├── tdd-workflow/
     ├── test-review/
     ├── code-review/
@@ -80,7 +96,7 @@ hooks/
 
 ## Version
 
-v0.3.0
+v0.5.0
 
 ## License
 

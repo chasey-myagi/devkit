@@ -12,6 +12,7 @@
 
 | Skill | 类型 | 说明 |
 |-------|------|------|
+| `harness-workflow` | SOP | 多 Agent 编排框架（Planner→Generator→Evaluator 迭代循环） |
 | `tdd-workflow` | SOP | 测试驱动开发 |
 | `issue-fix` | SOP | TDD 驱动的 bug 修复 |
 | `test-review` | Tool | 测试质量审核（6 维度） |
