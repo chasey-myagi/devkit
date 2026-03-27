@@ -2,7 +2,13 @@
 
 Development quality assurance skills for Claude Code.
 
-8 skills. Multi-agent harness workflow, TDD, test review, code review, and design-first frontend development.
+10 skills covering multi-agent harness, TDD, code review, design-first frontend, research reports, and more.
+
+## Install
+
+```bash
+claude install chasey-myagi/devkit
+```
 
 ## Skills
 
@@ -12,7 +18,7 @@ Development quality assurance skills for Claude Code.
 |-------|------|-------------|
 | `/harness-workflow` | SOP | GAN-inspired multi-agent harness: Planner → Generator → Evaluator with iterative feedback loops via AgentTeam. Supports backend, frontend, and fullstack tasks. |
 
-### General
+### Code Quality
 
 | Skill | Type | What it does |
 |-------|------|-------------|
@@ -20,26 +26,21 @@ Development quality assurance skills for Claude Code.
 | `/issue-fix` | SOP | TDD-driven bug fix: write regression test (FAIL) → fix (PASS) → code review |
 | `/test-review` | Tool | Test quality audit — 6-dimension scoring + missing scenario checklist |
 | `/code-review` | Tool | Code quality audit — 6-dimension scoring + prioritized issue list |
+| `/linus-review` | Tool | Linus Torvalds-style code roast — blunt, sharp, but every point hits a real issue |
 
 ### Frontend
 
 | Skill | Type | What it does |
 |-------|------|-------------|
-| `/frontend-workflow` | SOP | Design-first frontend: design context → UI cases → component cases → design freeze → implement |
+| `/frontend-workflow` | SOP | Design-first frontend: design context → UI cases → design freeze → implement |
 | `/ui-cases` | Tool | Generate 5+ interactive design variants as HTML — user picks in browser |
 | `/design-freeze` | Tool | Consolidate design selections → completeness audit → freeze design spec |
 
-## Hooks
+### Research
 
-| Event | Trigger | Effect |
-|-------|---------|--------|
-| PostToolUse:Bash | Test failure or compile error detected | Suggest `/issue-fix` for investigation |
-
-## Install
-
-```bash
-claude install chasey-myagi/devkit
-```
+| Skill | Type | What it does |
+|-------|------|-------------|
+| `/research-report` | Tool | Generate a single-file HTML report with dark/light theme, scroll animations, and strong visual hierarchy |
 
 ## Usage
 
@@ -51,9 +52,12 @@ claude install chasey-myagi/devkit
 /test-review path/to/tests       # Review specific test files
 /code-review                     # Review code quality
 /code-review HEAD~3..HEAD        # Review a specific git range
+/linus-review                    # Linus-style roast of recent changes
+/linus-review src/server/ask.rs  # Roast a specific file
 /frontend-workflow               # Design-first frontend development
 /ui-cases button                 # Generate design cases for button
 /design-freeze                   # Freeze design spec
+/research-report                 # Generate HTML research report
 ```
 
 ## How it works
@@ -69,34 +73,38 @@ Write tests → /test-review (>= 8.0?) → Implement → /code-review (>= 7.5?)
 - **Code review**: 6 dimensions — correctness, security, architecture, error handling, maintainability, requirements fit. Gate: every dimension >= 7.0, final >= 7.5, no Critical issues.
 - **All reviewers are independent agents** — fresh context each time, zero bias from implementation history.
 
+## Hooks
+
+| Event | Trigger | Effect |
+|-------|---------|--------|
+| PostToolUse:Bash | Test failure or compile error detected | Suggest `/issue-fix` for investigation |
+
 ## Architecture
 
 ```
-skills/                 ← Skill source files (plugin reads directly)
-    ├── harness-workflow/
-    │   ├── SKILL.md            ← Orchestration SOP
-    │   ├── planner.md          ← Planner teammate prompt
+skills/
+    ├── harness-workflow/   # 多 Agent 编排框架
+    │   ├── SKILL.md
+    │   ├── planner.md
     │   ├── backend/
-    │   │   ├── generator.md    ← Backend generator prompt
-    │   │   └── evaluator.md    ← Backend evaluator prompt (test + code review)
+    │   │   ├── generator.md
+    │   │   └── evaluator.md
     │   └── frontend/
-    │       ├── generator.md    ← Frontend generator prompt
-    │       └── evaluator.md    ← Frontend evaluator prompt (4-dimension browser testing)
-    ├── tdd-workflow/
-    ├── test-review/
-    ├── code-review/
-    ├── issue-fix/
-    ├── frontend-workflow/
-    ├── ui-cases/
-    └── design-freeze/
+    │       ├── generator.md
+    │       └── evaluator.md
+    ├── tdd-workflow/       # TDD 全流程
+    ├── test-review/        # 测试质量审核
+    ├── code-review/        # 代码质量审核
+    ├── issue-fix/          # TDD 驱动 bug 修复
+    ├── linus-review/       # Linus 风格毒舌审查
+    ├── frontend-workflow/  # 设计先行前端开发
+    ├── ui-cases/           # 组件设计方案生成
+    ├── design-freeze/      # 冻结设计规范
+    └── research-report/    # HTML 研究报告生成
 
 hooks/
-    └── hooks.json      ← Automation hooks
+    └── hooks.json          # 自动化 hooks
 ```
-
-## Version
-
-v0.5.0
 
 ## License
 
