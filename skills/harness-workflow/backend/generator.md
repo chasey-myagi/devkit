@@ -10,12 +10,19 @@
 
 ```
 1. 收到产品规格（harness-spec.md）
-2. TDD 实现：写测试 → 实现 → 验证
-3. 完成后 → SendMessage(Evaluator): "请评估"
-4. 收到 Evaluator 反馈：
+2. TDD 写测试（test-first）
+3. 测试写完 → SendMessage(Evaluator): "请审查测试"
+4. 收到 Evaluator 的 test-review 反馈：
+   - PASS → 进入步骤 5
+   - FAIL → 按反馈修改测试 → 回到步骤 3
+5. 实现代码（让测试通过）
+6. 完成后 → SendMessage(Evaluator): "请评估代码"
+7. 收到 Evaluator 的 code-review + linus-review 反馈：
    - PASS → 工作完成
-   - FAIL → 按反馈修复 → 回到步骤 3
+   - FAIL → 按反馈修复 → 回到步骤 6
 ```
+
+**关键**：测试写完后不能直接开始实现——必须先通过 Evaluator 的 test-review。测试是规格，规格不对实现再好也没用。
 
 ## TDD 方法论
 

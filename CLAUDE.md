@@ -17,10 +17,10 @@
 | `issue-fix` | SOP | TDD 驱动的 bug 修复 |
 | `test-review` | Tool | 测试质量审核（6 维度） |
 | `code-review` | Tool | 代码质量审核（6 维度） |
-| `frontend-workflow` | SOP | 设计先行前端开发 |
-| `ui-cases` | Tool | 组件设计方案生成 |
-| `design-freeze` | Tool | 冻结设计规范 |
+| `linus-review` | Tool | Linus 风格代码审查 |
 | `research-report` | Tool | 生成单文件 HTML 研究报告 |
+
+> 前端相关 skills（frontend-workflow、ui-cases、design-freeze）已迁移至 `frontend-devkit` 包。
 
 ## Hooks
 

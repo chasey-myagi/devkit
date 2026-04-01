@@ -63,15 +63,29 @@ Phase 1: 规划
 │ Lead → 展示给用户确认/调整               │
 └──────────────┬───────────────────────────┘
                ▼
-Phase 2: 生成-评估迭代循环
+Phase 2a: 写测试 + 审查测试
 ┌──────────────────────────────────────────┐
-│ Spawn Generator + Evaluator teammates    │
-│ SendMessage → Generator: 按 spec 实现    │
+│ Generator → 按 TDD 写测试（test-first） │
+│ Generator → Evaluator: "请审查测试"      │
+│ Evaluator → /test-review 审查测试质量    │
+│                                          │
+│  PASS → 测试固定为验收标准，进入 Phase 2b│
+│  FAIL → Evaluator → Generator: 反馈     │
+│          Generator 修改测试 → 再审       │
+└──────────────┬───────────────────────────┘
+               ▼
+Phase 2b: 实现 + 代码审查迭代
+┌──────────────────────────────────────────┐
+│ Generator → 按 spec 实现（让测试通过）   │
 │                                          │
 │  ┌── 迭代循环（max N 轮）──────────┐    │
 │  │ Generator → 实现功能             │    │
 │  │ Generator → Evaluator: "请评估"  │    │
-│  │ Evaluator → 独立评估             │    │
+│  │ Evaluator → 独立评估：           │    │
+│  │   /code-review                   │    │
+│  │   /linus-review（后端/重构）     │    │
+│  │   /impeccable:audit（前端）      │    │
+│  │   /impeccable:critique（前端）   │    │
 │  │                                  │    │
 │  │ PASS → Evaluator → Lead: 终报告  │    │
 │  │ FAIL → Evaluator → Generator:    │    │
@@ -86,6 +100,19 @@ Phase 3: 完成
 │ TeamDelete 清理                          │
 └──────────────────────────────────────────┘
 ```
+
+### Evaluator 两次介入
+
+Evaluator 在流程中介入**两次**，使用不同的 review skill：
+
+| 介入点 | 时机 | Review Skill | 目的 |
+|--------|------|-------------|------|
+| **Phase 2a** | Eval Init 写完测试后 | `/test-review` | 测试质量（测试是规格，规格错了一切都错） |
+| **Phase 2b** | Process 实现后 | `/code-review` + `/linus-review`（后端）或 `/impeccable:audit` + `/critique`（前端） | 代码质量 |
+
+**两条禁令**：
+- 不审测试就开始实现 = 禁止
+- 不审代码就标记完成 = 禁止
 
 ## Step-by-Step
 
