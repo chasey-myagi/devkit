@@ -1,9 +1,20 @@
 {
-  "name": "devkit",
-  "version": "0.5.0",
-  "type": "module",
-  "description": "Development quality assurance skills for AI coding assistants",
-  "keywords": ["claude-code", "tdd", "testing", "code-review", "quality", "skills"],
   "author": "Chasey",
-  "license": "BUSL-1.1"
+  "description": "Development quality assurance skills for AI coding assistants",
+  "keywords": [
+    "claude-code",
+    "tdd",
+    "testing",
+    "code-review",
+    "quality",
+    "skills"
+  ],
+  "license": "BUSL-1.1",
+  "lint-staged": {
+    "**/*.json": "prettier --write",
+    "**/*.md": "prettier --write"
+  },
+  "name": "devkit",
+  "type": "module",
+  "version": "0.5.0"
 }
