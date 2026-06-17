@@ -11,7 +11,7 @@
     {
       "name": "devkit",
       "description": "Development quality assurance skills — TDD workflow, test review, code review, and design-first frontend development",
-      "version": "0.6.0",
+      "version": "0.7.0",
       "author": {
         "name": "Chasey"
       },
