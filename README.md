@@ -1,5 +1,7 @@
 # DevKit
 
+> **⚠️ Archived (2026-06) — 不再维护。** 日常用的 code-review / test-review / linus-review 三件套已迁到 [chasey-myagi/skills](https://github.com/chasey-myagi/skills)（持续维护，`npx skills add`）。本仓作为只读归档，保留 harness-workflow / tdd-workflow / issue-fix / pdf-html / repo-port 等退役 skill，需要时仍可取用。
+
 Development quality assurance skills for Claude Code.
 
 10 skills covering multi-agent harness, TDD, code review, design-first frontend, research reports, and more.
